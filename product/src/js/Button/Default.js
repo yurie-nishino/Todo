@@ -17,7 +17,8 @@ export default function ContainedButtons(props) {
     <div className={classes.root}>
       <Button 
       variant="contained"
-      onClick={props.handleAddTask}
+      //2つ以上イベントが重なるときはclickFuncで共通化する
+      onClick={props.clickFunc}
       >
       {props.buttonTitle}
       </Button>

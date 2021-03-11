@@ -18,17 +18,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LayoutTextFields() {
   const classes = useStyles();
-  const initialState = [
-    {
-        task: 'ライティング',
-        isCompleted: false
-    },
-]
-//出力値かな？
+  const initialState = []
+  
+//出力値（リスト追加）
+//左辺：
+//左はstateの変数名（初期値はuseState()の引数）
+//右（setTodo)はstateを変更するための関数名
 const [todos, setTodo] = useState(initialState);
 
 //入力値
 const [task, setTask] = useState('')
+
+//削除
+// const [delTodos,deleteTodo] = useState('')
 
 
 //入力値を受け付けるイベント
@@ -52,17 +54,20 @@ const handleNewTask = (event) => {
             shrink: true,
           }}
           variant="outlined"
+          autocomplete="off"
           onChange={handleNewTask}
         />
 
-        {/* todoの中身 */}
+        {/* リストを出力 */}
         <ul>
         { todos.map((todo, index) => (
         <li key={ index }>{ todo.task }</li>
         ))}
       </ul>
-      <Add task={task} todos={todos} setTodo={setTodo} />
-      <Delete />
+      
+  {/* setTaskは入力の履歴を消す（あってもなくてもいい） */}
+      <Add task={task} todos={todos} setTodo={setTodo} setTask={setTask}/> 
+      <Delete task={task} todos={todos} setTodo={setTodo}/>
       </div>
     </div>
   );
